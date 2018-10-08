@@ -1,8 +1,7 @@
 let murderer = 'Professor Plum';
 
 if (murderer === 'Professor Plum') {
-  var murderer = 'Mrs. Peacock';
-  console.log(murderer);
+  let murderer = 'Mrs. Peacock'; //let means it only exists within the block, remove let and it will allow mrs peacock to return
 }
 
 const declareMurderer = function() {

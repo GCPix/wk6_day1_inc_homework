@@ -44,34 +44,34 @@ Episode 3
 let murderer = 'Professor Plum';
 
 const declareMurderer = function() {
-  let murderer = 'Mrs. Peacock';
-  return `The murderer is ${murderer}.`;
+  let murderer = 'Mrs. Peacock'; //only available within this block
+  return `The murderer is ${murderer}.`; //without the return line this comes back as undefined
 }
 
 const firstVerdict = declareMurderer();
 console.log('First Verdict: ', firstVerdict);
 
-would return Mrs Peacock
+//would return Mrs Peacock
 const secondVerdict = `The murderer is ${murderer}.`;
 console.log('Second Verdict: ', secondVerdict);
+// comes back as professor Plum, essentially this is available at the same level as const secondVerdict
 
-would return Professor Plum
 
 Episode 4
 let suspectOne = 'Miss Scarlet';
 let suspectTwo = 'Professor Plum';
 let suspectThree = 'Mrs. Peacock';
-
+//three above are available at same level as the console.log lines and suspects variable and to declareAllSuspects
 const declareAllSuspects = function() {
-  let suspectThree = 'Colonel Mustard';
+  let suspectThree = 'Colonel Mustard'; // because this exists within the block it will not look outside for it
   return `The suspects are ${suspectOne}, ${suspectTwo}, ${suspectThree}.`;
 }
 
 const suspects = declareAllSuspects();
 console.log(suspects);
-would return 'The suspects are Miss Scarlet, Professor Plum, Colonel Mustard'
+// would return 'The suspects are Miss Scarlet, Professor Plum, Colonel Mustard'
 console.log(`Suspect three is ${suspectThree}.`);
-Suspect three is Mrs Peacock
+//Suspect three is Mrs Peacock
 
 Episode 5
 const scenario = {
@@ -110,12 +110,14 @@ const changeMurderer = function() {
 const declareMurderer = function () {
   return `The murderer is ${murderer}.`;
 }
- // returns Colonel Mustard
+ // returns Colonel Mustard because it isn't calling anything else
 changeMurderer();
-// Mrs White, both green and white are global and the function was run within function for changeMurderer so this time it would should
+//let allows it to be modified so when changeMurderer is called it changes it to Mr Green but before the end of the block the nested plotTwist is called so this ends up being the murderer
 
 const verdict = declareMurderer();
 console.log(verdict);
+//mrs white
+
 
 
 Episode 7
@@ -123,18 +125,22 @@ let murderer = 'Professor Plum';
 
 const changeMurderer = function() {
   murderer = 'Mr. Green';
+  // returns mr green
 
   const plotTwist = function() {
     let murderer = 'Colonel Mustard';
 
     const unexpectedOutcome = function() {
       murderer = 'Miss Scarlet';
+
     }
-
-    unexpectedOutcome();
+    // returns mustard - we are still in the plotTwist block and it is a let
+   unexpectedOutcome();
+   //returns miss scarlet - unexpectedOutcome has been called and the plotTwistblock still hasn't closed
   }
-
+// returns green
   plotTwist();
+//returns green - is this because mustard is only available within plotTwist
 }
 
 const declareMurderer = function() {
@@ -144,7 +150,8 @@ const declareMurderer = function() {
 changeMurderer();
 const verdict = declareMurderer();
 console.log(verdict);
-Mr Green is returned.  I think this is because he is global therefor overrules the let? Miss Scarlet is also global but is nested within postTwist which is a let so doesn't take over.  If unexpectedOutcome was above plotTwist she would have been the returned value.
+// Mr Green is returned. If I comment him out Professor Plum is returned so it is ignoring mustard and scarlet. they seem to live locally within their block
+
 
 Episode 8
 const scenario = {
@@ -153,7 +160,7 @@ const scenario = {
   weapon: 'Lead Pipe'
 };
 
-const changeScenario = function() {
+const changeScenario = function() {//as this is the top level in the nest it is the only one that can be run outwith this block
   scenario.murderer = 'Mrs. Peacock';
   scenario.room = 'Dining Room';
 
@@ -168,10 +175,10 @@ const changeScenario = function() {
       }
     }
 
-    unexpectedOutcome('Colonel Mustard');
+    unexpectedOutcome('Colonel Mustard'); //nested inside plotTwist so needs to be called before that block ends otherwise not defined
   }
+  plotTwist('Dining Room'); //plotTwist is nested inside changeScenario to run it I have to call it after the plotTwist block closes but before the changeScenario block closes otherwise not defined.
 
-  plotTwist('Dining Room');
 }
 
 const declareWeapon = function() {
@@ -182,13 +189,14 @@ changeScenario();
 const verdict = declareWeapon();
 console.log(verdict);
 
-all variables are const but it doesn't stop me from altering the objects attributes.  I change the murderer to Col Mustard using unexpectedOutcome which means the if statement works for plotTwist.  
+// all variables are const but it doesn't stop me from altering the objects attributes.  I change the murderer to Col Mustard using unexpectedOutcome which means the if statement works for plotTwist.
+
 
 Episode 9
 let murderer = 'Professor Plum';
 
 if (murderer === 'Professor Plum') {
-  let murderer = 'Mrs. Peacock';
+  let murderer = 'Mrs. Peacock'; //let means it only exists within the block, remove let and it will allow mrs peacock to return
 }
 
 const declareMurderer = function() {
@@ -197,4 +205,3 @@ const declareMurderer = function() {
 
 const verdict = declareMurderer();
 console.log(verdict);
-//professor plum, it isn't a const so can be changed but unless Mrs Peacock was global which she shouldn't be it wouldn't allow it. I have been able to figure out that if the intial one is assigned as let you cannot change this unless you just don't specify anything.  If it is var you can use let inside a function because the same name will mean different things wihin the function and outwith but anything else is basically bad!
