@@ -53,14 +53,14 @@ console.log('First Verdict: ', firstVerdict);
 //would return Mrs Peacock
 const secondVerdict = `The murderer is ${murderer}.`;
 console.log('Second Verdict: ', secondVerdict);
-// comes back as professor Plum, essentially this is available at the same level as const secondVerdict
+// comes back as professor Plum, essentially this is available at the same level as const secondVerdict.  Based on this code alone shouldn't the murderer at the top be a const rather than let?
 
 
 Episode 4
 let suspectOne = 'Miss Scarlet';
 let suspectTwo = 'Professor Plum';
 let suspectThree = 'Mrs. Peacock';
-//three above are available at same level as the console.log lines and suspects variable and to declareAllSuspects
+//three above are available at same level as the console.log lines and suspects variable and to declareAllSuspects.  if they were const nothing would change, so they should be const?
 const declareAllSuspects = function() {
   let suspectThree = 'Colonel Mustard'; // because this exists within the block it will not look outside for it
   return `The suspects are ${suspectOne}, ${suspectTwo}, ${suspectThree}.`;
@@ -111,11 +111,14 @@ const declareMurderer = function () {
 }
  // returns Colonel Mustard because it isn't calling anything else
 changeMurderer();
-//let allows it to be modified so when changeMurderer is called it changes it to Mr Green but before the end of the block the nested plotTwist is called so this ends up being the murderer
+//let allows it to be modified so when changeMurderer is called it changes it to Mr Green but before the end of the block the nested plotTwist is called so this ends up being the murderer.  if it hadn't been called it would still be green regardless of the nested function.
+
+// let on the initial murderer variable allows it to be assigned a new value. if this had been const I would have got an error Assignment to constant variable.
 
 const verdict = declareMurderer();
 console.log(verdict);
 //mrs white
+
 
 
 
