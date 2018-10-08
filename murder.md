@@ -20,7 +20,7 @@ const declareMurderer = function() {
 const verdict = declareMurderer();
 console.log(verdict);
 
-would return 'Miss Scarlet'
+//would return 'Miss Scarlet'
 
 Episode 2
 const murderer = 'Professor Plum';
@@ -37,8 +37,7 @@ changeMurderer();
 const verdict = declareMurderer();
 console.log(verdict);
 
-murderer is a const so you shouldn't be able to change the value.  The murderer variable in changeMurderer is global which is bad anyway but I think the biggest part is you cannot change a const.
-Note for me! no matter what episode 2 looks like it will always show professor plum because the change to Mrs Peacock is inside the function.
+// plum is a const so changeMurderer isn't allowed to assign a new value even if we made peacock a let it would only be true within changeMurderer so verdict would never pick up on it. the initial constant would have to be a let and changeMurderer would have to be called within declareMurderer as declareMurderer(changeMurderer) before it would be seen.
 
 Episode 3
 let murderer = 'Professor Plum';
