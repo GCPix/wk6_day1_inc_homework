@@ -20,7 +20,7 @@ const declareMurderer = function() {
 const verdict = declareMurderer();
 console.log(verdict);
 
-//would return 'Miss Scarlet'
+//would return 'Miss Scarlet' because the object is declared above the function?
 
 Episode 2
 const murderer = 'Professor Plum';
